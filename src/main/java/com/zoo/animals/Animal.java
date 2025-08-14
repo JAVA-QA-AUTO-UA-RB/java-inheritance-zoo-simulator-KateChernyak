@@ -1,9 +1,7 @@
 package com.zoo.animals;
 
-public class Animal {
+public abstract class Animal implements IEatable, ISleepable {
     protected String name;
-    protected int age;
-    protected double weight;
     private int energyLevel = 100;
 
     //для статистики оголошу 3 змінні
@@ -11,84 +9,38 @@ public class Animal {
     protected int countSleep;
     protected int countSound;
 
-    public Animal(String name, int age, double weight, int energyLevel) {
+
+    // конструктор для створення тварини з рівнем енергії по дефолту
+    public Animal(String name){
         this.name = name;
-        this.age = age;
-        this.weight = weight;
-        setEnergyLevel(energyLevel);
     }
 
-    public void eat() {
-        energyLevel = energyLevel + 20;
-        if (energyLevel > 100) {
-            energyLevel = 100;
-        }
-        countEat();
-        System.out.println(" Animal " + name + " is fed and gained Energy " + energyLevel);
 
-    }
-    // тут я зробила перевірку, щоб енергія не перевищувала 100 після прийому їжі
-    // те саме зі сном, щоб тваринка не померла від щастя))
+    // методи
+    public abstract void makeSound();
 
-    public void sleep() {
-        energyLevel = energyLevel + 30;
-        if (energyLevel > 100) {
-            energyLevel = 100;
-        }
-        countSleep ();
-        System.out.println(" Animal " + name + " slept and got Energy " + energyLevel);
-    }
+    @Override
+    public abstract void eat();
 
-    public void makeSound() {
-        countSound();
-        System.out.println(name + " make a sound ");
-    }
+    @Override
+    public abstract void sleep();
+
 
     public void displayInfo() {
-        System.out.println(" Name: " + name + " , Age: " + age + " , Weight: " + weight + " , EnergyLevel: " + energyLevel);
+        System.out.println(" Name: " + name +  " , EnergyLevel: " + energyLevel);
     }
 
 
     // для виводу статистики в кінці гри
 
-    public void countEat() {
-        countEat++;
+    public void countEat() {countEat++;
     }
 
-    public void countSleep() {
-        countSleep++;
+    public void countSleep() {countSleep++;
     }
 
-    public void countSound() {
-        countSound++;
+    public void countSound() {countSound++;
     }
-
-
-    //геттери
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public int getEnergyLevel() {
-        return energyLevel;
-    }
-    public int getEatCount() {
-        return countEat; }
-
-    public int getSleepCount() {
-        return countSleep; }
-
-     public int getSoundCount() {
-        return countSound; }
 
 
     // сеттер
@@ -102,4 +54,21 @@ public class Animal {
             this.energyLevel = energyLevel;
         }
     }
+
+    //геттери
+
+    public String getName() {
+        return name;}
+
+    public int getEnergyLevel() {
+        return energyLevel;}
+
+    public int getEatCount() {
+        return countEat; }
+
+    public int getSleepCount() {
+        return countSleep; }
+
+     public int getSoundCount() {
+        return countSound; }
 }
