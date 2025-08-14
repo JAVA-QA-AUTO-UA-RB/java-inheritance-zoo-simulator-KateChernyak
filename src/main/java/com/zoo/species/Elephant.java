@@ -1,10 +1,33 @@
 package com.zoo.species;
 
+import com.zoo.animals.IPlayable;
 import com.zoo.animals.Mammal;
 
-public class Elephant extends Mammal {
-    public Elephant(String name, int age, double weight, int energyLevel, String furColor) {
-        super(name, age, weight, energyLevel, furColor);
+public class Elephant extends Mammal implements IPlayable {
+    public Elephant(String name,  int energyLevel, String furColor) {
+        super(name,  furColor);
+    }
+
+
+    //методи
+    @Override
+    public void move() {
+        System.out.println( "  \"Elephant stomps heavily.\"");
+    }
+
+    @Override
+    public void play() {
+        System.out.println( name + " is playing with water");
+    }
+
+    @Override
+    public void eat() {
+        System.out.println( name + " is eating Nom-Nom-Nom ");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println( name + " is sleeping HShhhhhhh");
     }
 
     @Override
